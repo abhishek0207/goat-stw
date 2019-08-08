@@ -1,0 +1,15 @@
+{
+  "name": "goat",
+  "version": "1.0.0",
+  "description": "for hackweek",
+  "main": "server/server.js",
+  "repository": "git@github.com:shelltechworks/goat.git",
+  "author": "<abhishekahuja02@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "nodemon": "^1.19.1",
+    "socket.io": "^2.2.0"
+  }
+}
