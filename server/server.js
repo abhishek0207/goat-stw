@@ -218,16 +218,16 @@ io.on("connection", async function(socket) {
       pet.setClientID(socket.id);
       pet.setPetState(states.BUSY);
     }
-    socket.on("disconnect", reason => {
-      console.log("disconnected");
-      console.log(reason);
-      clients = clients.filter(client => client.socket.id !== socket.id);
-      if (_.isEqual(pet.state.clientId, socket.id)) {
-        kennelSocket.emit("GIVE_TO_KENNEL");
-        pet.setClientID(kennelSocket.id);
-        pet.setPetState(states.AVAILABLE);
-        pet.setPetLocation("KENNEL");
-      }
-    });
+  });
+  socket.on("disconnect", reason => {
+    console.log("disconnected");
+    console.log(reason);
+    clients = clients.filter(client => client.socket.id !== socket.id);
+    if (_.isEqual(pet.state.clientId, socket.id)) {
+      kennelSocket.emit("GIVE_TO_KENNEL");
+      pet.setClientID(kennelSocket.id);
+      pet.setPetState(states.AVAILABLE);
+      pet.setPetLocation("KENNEL");
+    }
   });
 });
