@@ -131,6 +131,7 @@ io.on("connection", async function(socket) {
   };
 
   socket.on("KENNEL", hasPet => {
+    console.log(pet.state.location);
     if (_.isEmpty(kennelSocket)) {
       kennelSocket = socket;
       pet.setClientID(socket.id);
