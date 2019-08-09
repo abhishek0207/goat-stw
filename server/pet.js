@@ -4,7 +4,8 @@ module.exports = class Pet {
       location: "KENNEL",
       clientId: "",
       petState: "AVAILABLE",
-      socket: {}
+      socket: {},
+      skin: 0
     };
     this.setPetState = newState => {
       this.state.petState = newState;
@@ -14,6 +15,9 @@ module.exports = class Pet {
     };
     this.setPetLocation = location => {
       this.state.location = location;
+    };
+    this.changePetSkin = skin => {
+      this.state.skin = skin;
     };
   }
 };

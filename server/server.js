@@ -34,7 +34,7 @@ const sequenceSort = (a, b) => {
 };
 io.on("connection", async function(socket) {
   console.log(clients.length);
-  socket.emit("HELLO");
+  socket.emit("HELLO", { skin: pet.state.skin });
   socket.on("HELLO_ACK", data => {
     const address = socket.request.connection.remoteAddress;
     const port = socket.request.connection.remotePort;
@@ -46,6 +46,10 @@ io.on("connection", async function(socket) {
     });
   });
 
+  socket.on("CHANGE_SKIN", skinColor => {
+    pet.changePetSkin(skinColor);
+    socket.broadcast.emit("UPDATE_SKIN", pet.state.skin);
+  });
   const getLeftAnimations = (clients, current, petLocation, socketToWork) => {
     const act = [];
     clients.forEach(async client => {
