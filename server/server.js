@@ -132,12 +132,14 @@ io.on("connection", async function(socket) {
 
   socket.on("KENNEL", hasPet => {
     console.log(pet.state.location);
-    if (_.isEmpty(kennelSocket)) {
+    if (socket.id !== kennelSocket.id) {
       kennelSocket = socket;
-      pet.setClientID(socket.id);
-      pet.setPetLocation("KENNEL");
-      console.log(kennelSocket);
-      console.log("kennel is running now");
+      if (hasPet) {
+        pet.setClientID(socket.id);
+        pet.setPetLocation("KENNEL");
+        console.log(kennelSocket);
+        console.log("kennel is running now");
+      }
     } else {
       if (hasPet) {
         if (pet.state.clientId !== kennelSocket.id) {
